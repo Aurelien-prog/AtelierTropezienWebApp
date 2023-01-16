@@ -88,8 +88,10 @@ if (!$bdd) { // Contrôler la connexion
 else {
     if(isset($_POST['btnform_cdeproduit'])) {
       // Requête d'insertion
-      $req="INSERT INTO produit (reference, couleur, quantite, colisage, numProd, CodeEAN, addrsImage) VALUES
-          ('$ref', '$color', '$qte', '$coli', '$cdeEAN', '$cde', '$pht')";
+      $imgcode = "$cde.jpeg";
+      echo $imgcode;
+      $req="INSERT INTO produit (reference, couleur, quantite, colisage, numProd, CodeEAN, addrsImage, addrsScancode) VALUES
+          ('$ref', '$color', '$qte', '$coli', '$cdeEAN', '$cde', '$pht', '$imgcode')";
 
       // Exécution de la reqête
       mysqli_query($bdd, $req) or die('Erreur SQL ! '.$req.'<br>'.mysqli_error($bdd));
