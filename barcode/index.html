@@ -1,0 +1,92 @@
+<html>
+<head>
+<style type="text/css">
+body      { FONT-SIZE:16px; font-family:Arial; line-height:24px; margin: 0px; background:linear-gradient(180deg, #eeeeee 0%, #eedfc3 100%); }
+.fullcontent {margin-top:10px; margin-bottom:10px; margin-left:auto; margin-right:auto; max-width: 1200px; min-width: 600px; border: 3px solid #DDDDDD; background:linear-gradient(185deg, #eedfc3 0%, #FFFFFF 127px); position: relative; overflow: hidden;  padding: 5px 50px; }
+.toplogo{ border: 0px; margin-top:15px; margin-right:5px; display: block; text-align: right; border-radius:0px; height:50px; max-height:50px;  }
+.titletext {  font-size:25px; font-weight:bold; font-family:Arial;color:#056764; padding:0px; margin-top: 1px; margin-bottom: 0px; margin-left:0px; text-align: right; border-width:0px; border-bottom-color:#a0a0a0; border-bottom-style:none; border-left-style:none; border-right-style:none; border-top-style:none; }
+h1 { color: #056764; font-weight:bold; font-size:36px;border-width:1px; line-height: 36px; border-bottom-color:#c0c0c0; border-left-style:none; border-right-style:none;  border-top-style:none; border-bottom-style:solid;}
+hr { border-bottom-color:#c0c0c0; border-left-style:none; border-right-style:none; border-top-style:none; border-bottom-style:solid; margin: 25px 0px;}              
+</style>
+
+</head>
+<body>
+
+<div class="fullcontent">
+
+<div class="toplogo">
+           <div class="titletext"><font color="#FFA800">Active</font>Barcode</div>
+           Barcode solutions since 1994
+           </div>
+
+
+
+<h1><font color="#FFA800">ActiveBarcode</font> for PHP</h1>
+
+You can use ActiveBarcode (activebarcode.ocx) to create barcodes with PHP (on IIS, PWS or Apache): 
+The barcodes are created on server side and no modifications (e.g. plug in's) are required for the client side. 
+Every standard Internet browser that supports PNG Images will show the barcodes.<br>
+<br>
+We have included a PHP file (barcodeimage.PHP) that works as a wrapper around the activebarcode.ocx*.
+So it's very easy for you to create dynamic barcodes. Simply use the <b>barcodeimage.php</b> inside the
+<b>SRC-Attribute of an IMG tag</b>. The PHP file will return a barcode image to the client. 
+The sourcecode of the barcodeimage.php file can be used everywhere 
+and you are allowed to make modifications to it.
+<br>
+<br>
+Here are some examples for IMG-Tags:<br>
+<hr />
+
+1. This is the simplest example that is possible. It has no parameters, only the default values are used.<br />
+<b>&lt;img src="<font color="#056764">barcodeimage.php</font>" /&gt;</b><br /><br />
+<img src="barcodeimage.php" /><br /><br />
+<hr/> 
+
+2. This example shows how to set the most important parameters allowing us to get a useful barcode.<br />
+<b>&lt;img src="<font color="#056764">barcodeimage.php?code=CODE128&amp;text=ActiveBarcode&amp;showtext=1&amp;width=360&amp;height=100&amp;borderwidth=0</font>" width="360" height="100" /&gt;</b><br /><br />
+<img src="barcodeimage.php?code=CODE128&text=ActiveBarcode&showtext=1&width=360&height=100&borderwidth=0" width="360" height="100"/><br /><br />
+Note: It's required to set the width and height parameters as URI-Args for barcodeimage.php as shown here 
+(otherwise the barcode will have default dimensions that may not fit your requirements). And it's a good idea 
+(not required) to set the parameters also to the IMG Tag. This way the browser will know how much space the 
+resulting image will take on the page, even if it has not loaded yet.
+<hr />
+
+3. This example has it all: custom size, color, rotation and borders around the barcode.<br />
+<b>&lt;img src="<font color="#056764">barcodeimage.php?code=CODE39EXTENDED&amp;text=Hello%20World!&amp;showtext=1&amp;rotate=90&amp;backcolor=002288&amp;forecolor=12345&amp;width=250&amp;height=430&amp;borderwidth=50&amp;borderheight=25</font>" width="250" height="430" /&gt;</b><br /><br />
+<img src="barcodeimage.php?code=CODE39Extended&text=Hello%20World!&showtext=1&rotate=90&backcolor=FFFF99&forecolor=002288&width=250&height=430&borderwidth=50&borderheight=25" width="250" height="430"/><br /><br />
+Note: URI-Args are URL-Encoded (i.e. a space is %20).<br />
+Backcolor and forecolor can be set as html color (ffffff = white, 000000 = black).<br />
+<hr />
+
+4. This example shows the 2D barcode PDF417 with the encoded text "Hello World!"<br />
+
+<b>&lt;img src="<font color="#056764">barcodeimage.php?code=PDF417&amp;text=Hello%20World!&amp;showtext=1&amp;width=360&amp;height=100&amp;borderwidth=0</font>" width="360" height="100" /&gt;</b><br /><br />
+<img src="barcodeimage.php?code=PDF417&text=Hello%20World!&showtext=1&width=360&height=100&borderwidth=0" width="360" height="100"/><br /><br />
+<hr />
+
+5. This example shows a QR Code, encoded with a control character. "Active" is encoded and followed by a Carriage Return and the word "Barcode"<br />
+
+<b>&lt;img src="<font color="red">barcodeimage.php?typeno=113&amp;text=Active&lt;CR&gt;Barcode&amp;showtext=1&amp;width=150&amp;height=150&amp;borderwidth=0</font>" /&gt;</b><br /><br />
+<img src="barcodeimage.php?typeno=113&text=Active&lt;CR&gt;Barcode&showtext=1&width=150&height=150&borderwidth=0"/><br /><br />
+<hr />
+
+
+More detailed info about the barcodeimage.php and the parameters that can be passed can be found 
+in the <b>documented sourcecode of the <a href="barcodeimage.php">barcodeimage.php</a> file</b>.<br>
+<br />
+These examples just show the basic usage of IMG-Tags. If you want to create barcodes dynamically you can use php, 
+Perl, asp etc. in order to create IMG-Tags with dynamic parameters. We have placed some php-example-Files into the 
+/php folder of you installation:<br />
+<ul>
+<li /><a href="example_create_current_time_as_code128.php">example_create_current_time_as_code128.php</a> - Shows the servertime as a barcode.<br />
+<li /><a href="example_calc_checksum_only.php">example_calc_checksum_only.php</a> - Show the usage of the component without creating barcodes as an image stream - i.e. to calculate barcode-checksums.<br />
+</ul>
+ActiveBarcode is written in C++ . We have stresstested it under IIS and optimzed it for stability and speed 
+so that you can use this component even on high traffic servers within the adress-space of IIS.
+<hr />
+<font color="#056764"><b>IMPORTANT NOTE:</b></font> If you see broken pictures instead of barcodes here, 
+activebarcode.ocx is not yet installed for use under IIS.<br /><br />
+
+</div>
+</body>
+</html>

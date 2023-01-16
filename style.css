@@ -1,0 +1,140 @@
+html {background-image: url("Image/TAMPON-AT.png");background-size: 100%;background-color: aliceblue;height: 100%;overflow: hidden;
+    font-family: 'helvetica neue', helvetica, arial, sans-serif;}
+body {margin: 0;}
+header {background-color: bisque;display: flex;align-items: center;gap: 3%;width: 100%;padding: 0 10% 0 10%;}
+    .btn-menu {height:30px;width:150px;background-color: lightpink;color: black;text-align: center;
+        border: solid 2px black;border-radius: 1px;font-size: 15px;font-weight: bold;margin: 20% 0 20% 0;}
+/*---------------------*/
+/*----- HOME PAGE -----*/
+/*---------------------*/
+.container-home {display: flex;flex-direction: row;width: 70%;height: 450px;margin: 5% 0 5% 15%;border: solid 6px bisque;border-radius: 10px;}
+    .container-left-home {width: 30%;height: 100%;display: flex;flex-direction: column;align-items: center;gap: 7%;}
+        .data-home {display: flex;flex-direction: column;width: 70%;} .top {margin: 35% 0 0 0;}
+    .container-right-home {display: flex;flex-direction: row;flex-wrap: wrap;width: 70%;height: 100%;
+        align-content: center;justify-content: center;gap: 3%;}
+        .warning {color:red;font-size: 20px;text-align: center;margin: 0 0 0 15%;font-weight: bold;}
+/*------------------------*/
+/*----- PRODUCT PAGE -----*/
+/*------------------------*/
+.container-product {display: flex;flex-direction: row;width: 70%;height: 450px;margin: 5% 0 5% 15%;border: solid 6px bisque;border-radius: 10px;}
+    .container-cp {display: flex;flex-direction: column;width: 33%;height: 100%;align-items: center;gap: 8%;}
+    .container-right-cp {width: 33%;height: 100%;}
+        .data-cp {display: flex;flex-direction: column;width: 70%;} .top-cp {margin: 15% 0 0 0;} .top-scan-cp{margin: 45% 0 0 15%;}
+        .btn-top-cp {margin: 8% 0 0 0;}
+/*----------------------*/
+/*----- STOCK PAGE -----*/
+/*----------------------*/
+.container-stock {display: flex;flex-direction: row;margin: 3%;gap: 5%;}
+.container-search {display: flex;flex-direction: row;margin: 3%;}
+.container-left-stock {display: flex;flex-direction: column;width: 30%;justify-content: center;gap: 5%;align-items: center;}
+    .select-stock {width: 50%;background-color: bisque;border: none;height: 35px;font-size: 15px;text-align: center;font-weight: bold;}
+    .btn-stock {width: 50%;}
+/*----- TABLEAU -----*/
+.container-right-stock {display: flex;width: 60%;height: 500px;border: solid 6px bisque;
+    border-radius: 10px;}
+.container-right-search {display: flex;width: 90%;height: 500px;border: solid 6px bisque;
+    border-radius: 10px;}
+    .form-stock {display: flex;flex-direction: column;width: 100%;align-items: center;}
+    .scroll {overflow: scroll;width: 100%;} .scroll-search {overflow: auto;width: 100%;}
+    .table-stock {border-collapse: collapse;width: 100%;}
+    .tr-table-stock {height: 60px;}
+    th {border: solid 2px black;}
+    td {border: solid 2px black;}
+    tbody {text-align: center;}
+    .td-search-pht {width: 150px;}
+    .td-search-ref {width: 150px;}
+    .td-search {width: 100px;}
+    .td-little {width: 50px;}
+    .td-file {display: flex;flex-direction: column;align-items: center;}
+    .input-edit {background-color: transparent;border: none;height: 30px;font-size: 15px;text-align: center;font-weight: bold;width: 50%;}
+    .button-edit {height: 25px;background-color: bisque;font-weight: bold;font-size: 18px;border-radius: 2px;width: 60%;}
+    .input-files {background-color: bisque;border: none;height: 25px;font-size: 14px;text-align: center;font-weight: bold;width: 140px;}
+    .input-search {width: 50%;margin: 0 0 3% 0;}
+    .petit {width: 180%;margin: 0 0 0 -40%;}
+/*-------------------------*/
+/*----- FICHE PRODUIT -----*/
+/*-------------------------*/
+.form-fiche-prod {margin: 15% 40%;display: flex;flex-direction: column;gap: 8px;}
+/*-------------------------*/
+/*------ PAGE SCANNER -----*/
+/*-------------------------*/
+.top-scan {text-align: center;margin: 5% 0;}
+
+.lbl {font-weight: bold;font-size: 20px;text-align: center;}
+
+.btn-edit {position: absolute;display: flex;flex-direction: column;margin: -5px 0 10px 2%;}
+.btn-edit2 {background-color: transparent;border: solid 2px black;}
+.box1 {display: flex;flex-direction: column;width: 50%;font-size: 25px;font-weight: bold;text-align: center;padding: 10% 0 0 0;
+    border-right: solid 1px black;}
+.box2 {display: flex;align-items: center;margin: 0 0 0 8%;}
+.span-box-qte {border: solid 3px black;width: 15%;margin: 0 0 0 80%;}
+.span-box-scan {margin-top: 2%;}
+.inp-stock {border: none;background-color: transparent;font-size: 20px;text-align: center;width: 110px;}
+.inp-stock-ean {width: 135px;}
+.inp-stock-qte {width: 60px;}
+.inp-stock-clr {width: 130px;}
+.scanEAN {width: 30%;align-items: center;}
+.div-top-stock {display: flex;position: absolute; width: 50%;height: 5%;margin: 7% 0 0 16%;gap: 3%;}
+
+.box-trie {display: flex;flex-direction: row;border: solid 1px black;height: 75px;width: 100%;}
+.box-donnees {display: flex;flex-direction: row;text-align: center;align-items: center;justify-content: space-evenly;width: 100%;}
+
+.input {background-color: bisque;border: none;height: 28px;font-size: 15px;text-align: center;font-weight: bold;text-transform: uppercase;}
+.input-file {width: 80%;font-size: 15px;}
+.input-top {background-color: bisque;border: none;height: 40px;font-size: 15px;text-align: center;font-weight: bold;}
+.button {height: 35px;background-color: bisque;font-weight: bold;font-size: 20px;border-radius: 2px;}
+.buttonScan {width: 130px;}
+
+/*--------IMAGE--------*/
+.img-scan2 {width: 95%;}
+.img-scan-stock {width: 70%;}
+.img-box {width: 50%;}
+.photo-box {width: 250px;}
+.photo-box2 {width: 70px;}
+.img-edit {width: 25px;}
+.img-delete {width: 15px;}
+/*-------- EFFETS --------*/
+.zoom:hover {transform: scale(1.1);transition: transform .2s;}
+.scroll {overflow:scroll!important;border: solid 1px black;}
+.img-zoom {transition: transform .1s;}
+.img-zoom:hover{-ms-transform: scale(1.9);-webkit-transform: scale(1.5);transform: scale(1.5);}
+.hide {visibility: hidden;}
+/*--------------------*/
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 8;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.modal-content {
+    margin: 50px auto;
+    border: 1px solid #999;
+    width: 60%;
+}
+.contact-form button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: #1c87c9;
+    font-size: 16px;
+    font-weight: 400;
+    color: #fff;
+}
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
