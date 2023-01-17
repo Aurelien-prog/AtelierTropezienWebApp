@@ -1,26 +1,50 @@
-<?php include ('../logBDD.php');
+<link rel="stylesheet" href="../style.css">
+<?php include ('../database/logBDD.php');
+      include ('../header.php');
 
 $cachet = 31912151;
-$marque = $_POST['marque'];
 $ref = $_POST['reference'];
 $color = $_POST['couleur'];
 $cdeEAN = $_POST['btnform_cdeproduit'];
 $cde = $cachet."".$cdeEAN;
 $qte = $_POST['quantite'];
 $coli = $_POST['colisage'];
+$marque = $_POST['marque'];
 $pht = $_FILES['fileToUpload']['name'];
-//$scan = $_FILES['fileToUpload2']['name'];
+//$scan = $_FILES['fileToUpload2']['name'];?>
 
-//$scan = $_POST['scanean'];
-echo "Marque : ".$marque;?><br><?php
-echo "Référence : ".$ref;?><br><?php
-echo "Couleur : ".$color;?><br><?php
-echo "code Produit : ".$cdeEAN;?><br><?php
-echo "code EAN : ".$cde;?><br><?php
-echo "Quantité : ".$qte;?><br><?php
-echo "Photo : ".$pht;?><br><?php
-//echo "Scan : ".$scan;?><br><br><?php
+<div class="container-all-data">
+  <p>Redirection dans 5s ....</p>
+  <div>
+      <?php echo $ref; ?>
+      <?php echo $color; ?>
+  </div>
+  <div>
+      <?php echo "Quantité : ".$qte; ?>
+      <?php echo " / Colisage : ".$coli; ?>
+  </div>
+  <div>
+    <?php echo $marque; ?>
+  </div>
+  <div>
+    <?php echo $cdeEAN; ?>
+  </div>
+  <div>
+    <?php echo $cde; ?>
+  </div><br><br>
+  <div><?php
+    $nom_repertoire = '../PHOTO';
+    $pointeur = opendir($nom_repertoire); 
+    closedir($pointeur);
+    echo '<img class="img-zoom" style="height:70px; width:150px;" src="'.$nom_repertoire.'/'.$pht.'"';?>
+  </div><br><br>
+  <div><?php
+    //echo $cde;
+    echo "<img src='../barcode/barcodeimage.php?code=EAN13&text=".$cde."&showtext=1&width=370&height=140&borderwidth=0'/>";?>
+  </div>
+</div><br><br><br>
 
+<?php
 /////////////////////////////////////
 //  UPLOAD IMAGE -> DOSSIER PHOTO  //
 /////////////////////////////////////
@@ -43,7 +67,7 @@ if(isset($_POST["submit"])) {
 }
 // Check if file already exists
 if (file_exists($target_file)) {
-  echo "Désolé, ce fichier existe déjà.<br>";
+  echo "Ce fichier existe déjà.<br>";
   $uploadOk = 0;
 }
 if (file_exists("TAMPON-AT.png")) {
@@ -89,12 +113,12 @@ else {
     if(isset($_POST['btnform_cdeproduit'])) {
       // Requête d'insertion
       $imgcode = "$cde.jpeg";
-      echo $imgcode;
-      $req="INSERT INTO produit (reference, couleur, quantite, colisage, numProd, CodeEAN, addrsImage, addrsScancode) VALUES
-          ('$ref', '$color', '$qte', '$coli', '$cdeEAN', '$cde', '$pht', '$imgcode')";
-
+      //echo $imgcode;
+      $req="INSERT INTO produit (reference, couleur, quantite, colisage, marque, numProd, CodeEAN, addrsImage, addrsScancode) VALUES
+          ('$ref', '$color', '$qte', '$coli', '$marque', '$cdeEAN', '$cde', '$pht', '$imgcode')";
+      echo "<p style='color:red;'>PRODUIT AJOUTÉ AVEC SUCCES !</p>";
       // Exécution de la reqête
       mysqli_query($bdd, $req) or die('Erreur SQL ! '.$req.'<br>'.mysqli_error($bdd));
     }
 }
-header("refresh:2;url=../codeproduit.php");?>
+header("refresh:5;url=../pages/codeproduit.php");?>

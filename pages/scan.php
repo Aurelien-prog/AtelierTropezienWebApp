@@ -1,4 +1,4 @@
-<?php include('header.php');
+<?php include('../header.php');
 /////////////////////////
 $PARAM_hote='localhost';        
 $PARAM_nom_bd='BDD_EAN';
@@ -6,12 +6,34 @@ $PARAM_utilisateur='akost';
 $PARAM_mot_passe='1234567';
 /////////////////////////?>
 <form class="top-scan" action="scan.php" method="POST">
-    <input class="input-top" type="text" name="code" placeholder="<?php echo @$_POST['codeEAN']?>" autofocus></input>
+    <input class="input" type="text" name="code" placeholder="<?php echo @$_POST['codeEAN']?>" autofocus></input>
     <button type="submit" class="button zoom" name="btn-add">AJOUTER</button>
     <button type="submit" class="button zoom" name="btn-delete">SUPPRIMER</button>
 </form><?php
 @$btn = $_POST['btn-add'];
 @$btnd = $_POST['btn-delete'];
+
+/*$dataList = [];
+
+?><script>
+(function iS() {
+    var execJs= function eJs(){
+    //refresh convertisseur
+    function addList(){
+        @$_POST['codeEAN'].push($dataList);
+    }
+    //Permet de d'appeller la fonction tout les 1000 millisecondes (1 seconde)
+    setInterval(addList, 3000);
+};
+$(execJs);
+})();
+</script><?php
+
+foreach ($dataList) {
+    
+}*/
+
+
 if (isset($btnd)) {
     $code = $_POST['code'];
     try {

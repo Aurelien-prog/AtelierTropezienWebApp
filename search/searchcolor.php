@@ -14,5 +14,4 @@ while($donnee = $requete->fetch())
 {
     array_push($array, $donnee['couleur']);
 }
- 
 echo json_encode($array);?>

@@ -1,5 +1,5 @@
-<?php include('header.php');
-      include('logBDD.php');      
+<?php include('../header.php');
+      include('../database/logBDD.php');
 // Requête pour récuperer le plus grand numéro de produit.
 $cachet = 31912151;
 try{ $mysqlClient = new PDO( 'mysql:host=localhost;dbname=BDD_EAN;charset=utf8', 'akost', '1234567'); }
@@ -16,13 +16,13 @@ foreach ($rec as $rec) {
         $cde = $rec['maxCode'];
     }    
 }?>
-<form class="container-product" action="traitement/send-form_codeproduit.php" method="post" enctype="multipart/form-data">
+<form class="container-product" action="../traitement/send-form_codeproduit.php" method="post" enctype="multipart/form-data">
     <div class="container-cp">
         <div class="data-cp top-cp">
             <label class="lbl">MARQUE<span style="color:red;">*</span></label>
             <select class="input" name="marque">
                 <option value="ATELIER TROPEZIEN">ATELIER TROPEZIEN</option>
-                <option value="ANAMAÏA">ANAMAÏA</option>
+                <option value="ANAMAIA">ANAMAÏA</option>
             </select>
         </div>
         <div class="data-cp">
@@ -56,6 +56,6 @@ foreach ($rec as $rec) {
         </div>
     </div>
     <div class="container-right-cp">
-    <div><?php echo "<img class='top-scan-cp' src='barcode/barcodeimage.php?code=EAN13&text=".$cachet, $cde."&showtext=1&width=220&height=90&borderwidth=0'/>";?></div>
+        <div><?php echo "<img class='top-scan-cp' name='img-download' src='../barcode/barcodeimage.php?code=EAN13&text=".$cachet, $cde."&showtext=1&width=220&height=90&borderwidth=0'/>";?></div>
     </div>
 </form>

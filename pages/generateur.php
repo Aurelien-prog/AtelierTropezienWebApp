@@ -1,7 +1,6 @@
-<?php include('header.php');?>
-
+<?php include('../header.php');?>
 <section class="container-home">
-    <form class="container-left-home" method="post" action="Home.php">
+    <form class="container-left-home" action="generateur.php" method="post">
         <div class="data-home top">
             <label class="lbl" for="">CODE EAN<span style="color:red;">*</span></label>
             <input class="input" name="code" type="text" required/>
@@ -29,7 +28,7 @@
             if(strlen($EAN) == "7") {
                 while ($a < $compt) {
                     ?><div>
-                        <div><?php echo "<img src='barcode/barcodeimage.php?code=EAN8&text=".$EAN."&showtext=
+                        <div><?php echo "<img src='../barcode/barcodeimage.php?code=EAN8&text=".$EAN."&showtext=
                             1&width=210&height=70&borderwidth=0'/>";?></div>
                         <div style="font-size:20px;text-align:center;font-weight:bold;text-decoration:overline;"><?php echo $EAN;?></div>
                     </div><?php
@@ -39,7 +38,7 @@
             } elseif(strlen($EAN) == "12") {
                 while ($a < $compt) {
                     ?><div class="scanEAN">
-                        <div><?php echo "<img src='barcode/barcodeimage.php?code=EAN13&text=".$EAN."&showtext=
+                        <div><?php echo "<img src='../barcode/barcodeimage.php?code=EAN13&text=".$EAN."&showtext=
                             1&width=210&height=70&borderwidth=0'/>";?></div>
                         <div style="font-size:20px;text-align:center;font-weight:bold;text-decoration:overline;"><?php echo $EAN;?></div>
                     </div><?php

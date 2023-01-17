@@ -1,13 +1,17 @@
-html {background-image: url("Image/TAMPON-AT.png");background-size: 100%;background-color: aliceblue;height: 100%;overflow: hidden;
+html {background-image: url("../Image/TAMPON-AT.png");background-size: 100%;background-color: lightskyblue;height: 100%;overflow: hidden;
     font-family: 'helvetica neue', helvetica, arial, sans-serif;}
 body {margin: 0;}
-header {background-color: bisque;display: flex;align-items: center;gap: 3%;width: 100%;padding: 0 10% 0 10%;}
-    .btn-menu {height:30px;width:150px;background-color: lightpink;color: black;text-align: center;
-        border: solid 2px black;border-radius: 1px;font-size: 15px;font-weight: bold;margin: 20% 0 20% 0;}
+/***********************/
+.input {background-color: deepskyblue;border: none;height: 28px;font-size: 15px;text-align: center;font-weight: bold;text-transform: uppercase;}
+.inputPlus {width: 50%;}
+.zoom:hover {transform: scale(1.1);transition: transform .3s;}
+.button {height: 32px;background-color: dodgerblue;border: none;border-radius: 8px;font-weight: bold;font-size: 15px;}
+.button:hover {background-color: deepskyblue;}
+.lbl {font-size: 12px;}
 /*---------------------*/
 /*----- HOME PAGE -----*/
 /*---------------------*/
-.container-home {display: flex;flex-direction: row;width: 70%;height: 450px;margin: 5% 0 5% 15%;border: solid 6px bisque;border-radius: 10px;}
+.container-home {display: flex;flex-direction: row;width: 70%;height: 450px;margin: 5% 0 5% 15%;border-radius: 10px;}
     .container-left-home {width: 30%;height: 100%;display: flex;flex-direction: column;align-items: center;gap: 7%;}
         .data-home {display: flex;flex-direction: column;width: 70%;} .top {margin: 35% 0 0 0;}
     .container-right-home {display: flex;flex-direction: row;flex-wrap: wrap;width: 70%;height: 100%;
@@ -63,6 +67,10 @@ header {background-color: bisque;display: flex;align-items: center;gap: 3%;width
 
 .lbl {font-weight: bold;font-size: 20px;text-align: center;}
 
+
+.container-all-data {position: absolute;width: 50%;margin: 3% 25%;text-align: center;text-transform: uppercase;}
+
+
 .btn-edit {position: absolute;display: flex;flex-direction: column;margin: -5px 0 10px 2%;}
 .btn-edit2 {background-color: transparent;border: solid 2px black;}
 .box1 {display: flex;flex-direction: column;width: 50%;font-size: 25px;font-weight: bold;text-align: center;padding: 10% 0 0 0;
@@ -80,10 +88,9 @@ header {background-color: bisque;display: flex;align-items: center;gap: 3%;width
 .box-trie {display: flex;flex-direction: row;border: solid 1px black;height: 75px;width: 100%;}
 .box-donnees {display: flex;flex-direction: row;text-align: center;align-items: center;justify-content: space-evenly;width: 100%;}
 
-.input {background-color: bisque;border: none;height: 28px;font-size: 15px;text-align: center;font-weight: bold;text-transform: uppercase;}
+
 .input-file {width: 80%;font-size: 15px;}
 .input-top {background-color: bisque;border: none;height: 40px;font-size: 15px;text-align: center;font-weight: bold;}
-.button {height: 35px;background-color: bisque;font-weight: bold;font-size: 20px;border-radius: 2px;}
 .buttonScan {width: 130px;}
 
 /*--------IMAGE--------*/
@@ -95,7 +102,7 @@ header {background-color: bisque;display: flex;align-items: center;gap: 3%;width
 .img-edit {width: 25px;}
 .img-cross {width: 20px;}
 /*-------- EFFETS --------*/
-.zoom:hover {transform: scale(1.1);transition: transform .2s;}
+/*.zoom:hover {transform: scale(1.1);transition: transform .2s;}*/
 .scroll {overflow:scroll!important;border: solid 1px black;}
 .img-zoom {transition: transform .1s;}
 .img-zoom:hover{-ms-transform: scale(1.9);-webkit-transform: scale(1.5);transform: scale(1.5);}

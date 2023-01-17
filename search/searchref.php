@@ -14,6 +14,5 @@ while($donnee = $requete->fetch()) // on effectue une boucle pour obtenir les do
 {
     array_push($array, $donnee['reference']); // et on ajoute celles-ci à notre tableau
 }
- 
 echo json_encode($array);
 ?>

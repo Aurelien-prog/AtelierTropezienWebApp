@@ -9,7 +9,7 @@ $data = mysqli_fetch_array($result);
 mysqli_free_result($result);
 
 // Appel de la librairie FPDF
-require("fpdf/fpdf.php");
+require("../fpdf/fpdf.php");
 
 if ($data['marque'] == "ATELIER TROPEZIEN") {
   // Création de la class PDF
@@ -17,7 +17,7 @@ if ($data['marque'] == "ATELIER TROPEZIEN") {
     // Header
     function Header() {
       // Logo : 1 >position à gauche du document (en mm), 2 >position en haut du document, 80 >largeur de l'image en mm). La hauteur est calculée automatiquement.
-      $this->Image('PHOTO/TAMPON-AT.png',30,0,150);//Seulement des images en png !
+      $this->Image('../PHOTO/TAMPON-AT.png',30,0,150);//Seulement des images en png !
       // Saut de ligne 20 mm
       $this->Ln(5);
       // Titre gras (B) police Helbetica de 11
@@ -36,7 +36,7 @@ if ($data['marque'] == "ATELIER TROPEZIEN") {
     // Header
     function Header() {
       // Logo : 1 >position à gauche du document (en mm), 2 >position en haut du document, 80 >largeur de l'image en mm). La hauteur est calculée automatiquement.
-      $this->Image('PHOTO/TAMPON-ANA.png',35,20,150);//Seulement des images en png !
+      $this->Image('../PHOTO/TAMPON-ANA.png',35,20,150);//Seulement des images en png !
       // Saut de ligne 5 mm
       $this->Ln(5);
       // Titre gras (B) police Helbetica de 11
@@ -61,20 +61,20 @@ $pdf->SetTextColor(0);
 if ($data['marque'] == "ATELIER TROPEZIEN") {
   $pdf->Cell(120,10,"Reference :   ".$data['reference']."",0,1,'L');
   $pdf->Cell(120,10,"Couleur :       ".$data['couleur']."",0,1,'L');
-  $pdf->Image('PHOTO/'.$data['addrsImage'].'',130,50,70);
+  $pdf->Image('../PHOTO/'.$data['addrsImage'].'',130,50,70);
   $pdf->Ln(15);
   $pdf->Cell(25,10,"Pack de :       ".$data['colisage']."",0,1,'L');
   $pdf->Ln(5);
-  $pdf->Image('PHOTO/'.$data['addrsScancode'].'',50,105,95);
+  $pdf->Image('../PHOTO/'.$data['addrsScancode'].'',50,105,95);
 } else {
   $pdf->SetFillColor(255,255,255);
   $pdf->cell(120,10,"Reference :   ".$data['reference']."",0,1,'L',1);
   $pdf->cell(120,10,"Couleur :       ".$data['couleur']."",0,1,'L',1);
-  $pdf->Image('PHOTO/'.$data['addrsImage'].'',130,50,70);
+  $pdf->Image('../PHOTO/'.$data['addrsImage'].'',130,50,70);
   $pdf->Ln(15);
   $pdf->Cell(25,10,"Pack de :       ".$data['colisage']."",0,1,'L');
   $pdf->Ln(5);
-  $pdf->Image('PHOTO/'.$data['addrsScancode'].'',50,105,95);
+  $pdf->Image('../PHOTO/'.$data['addrsScancode'].'',50,105,95);
 }
 
 // Fonction en-tête des tableaux en 3 colonnes de largeurs variables

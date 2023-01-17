@@ -1,6 +1,6 @@
-<?php include('header.php'); ?>
+<?php include('../header.php');?>
 
-<form class="form-fiche-prod" method="post" action="pdf.php" name="form-search">
+<form class="form-fiche-prod" method="post" action="../traitement/pdf.php" name="form-search">
     <label class="lbl" for="">RÉFÉRENCE<span style="color:red;">*</span></label>
     <input class="input" type="search" autocomplete="off" name="reference" id="tags" autofocus/>
     <div id="recherche"></div>
@@ -11,13 +11,13 @@
 <script>
 $( function() {
     $( "#tags" ).autocomplete({
-        source: "./search/searchref.php",
+        source: "../search/searchref.php",
         minLength: 1
     });
 });
 $( function() {
     $( "#tag" ).autocomplete({
-        source: "./search/searchcolor.php",
+        source: "../search/searchcolor.php",
         minLength: 1
     });
 });
