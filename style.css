@@ -48,6 +48,7 @@ header {background-color: bisque;display: flex;align-items: center;gap: 3%;width
     .td-file {display: flex;flex-direction: column;align-items: center;}
     .input-edit {background-color: transparent;border: none;height: 30px;font-size: 15px;text-align: center;font-weight: bold;width: 50%;}
     .button-edit {height: 25px;background-color: bisque;font-weight: bold;font-size: 18px;border-radius: 2px;width: 60%;}
+    .btn-delete {border: none;background-color: transparent;}
     .input-files {background-color: bisque;border: none;height: 25px;font-size: 14px;text-align: center;font-weight: bold;width: 140px;}
     .input-search {width: 50%;margin: 0 0 3% 0;}
     .petit {width: 180%;margin: 0 0 0 -40%;}
@@ -92,7 +93,7 @@ header {background-color: bisque;display: flex;align-items: center;gap: 3%;width
 .photo-box {width: 250px;}
 .photo-box2 {width: 70px;}
 .img-edit {width: 25px;}
-.img-delete {width: 15px;}
+.img-cross {width: 20px;}
 /*-------- EFFETS --------*/
 .zoom:hover {transform: scale(1.1);transition: transform .2s;}
 .scroll {overflow:scroll!important;border: solid 1px black;}
