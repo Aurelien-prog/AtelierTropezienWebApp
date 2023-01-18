@@ -14,7 +14,7 @@ foreach ($rec as $rec) {
         $cde = 1008;
     } else {
         $cde = $rec['maxCode'];
-    }    
+    }
 }?>
 <form class="container-product" action="../traitement/send-form_codeproduit.php" method="post" enctype="multipart/form-data">
     <div class="container-cp">

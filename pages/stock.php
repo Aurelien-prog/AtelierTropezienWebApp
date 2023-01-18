@@ -10,10 +10,11 @@ if (isset($_POST['btn-search'])) {
     if ($_POST['word'] == "") {?>
         <section class="container-search">
             <div class="container-left-stock">
-                <a href="stock.php"><button class="button zoom petit">RETOUR</button></a>
+                <a href="stock.php"><button class="button-filtre zoom return">RETOUR</button></a>
                 <form class="form-stock" action="stock.php" method="POST">                
                     <input class="input input-search" type="search" autocomplete="off" name="word" id="search"></input>
-                    <button class="button zoom btn-stock" name="btn-search" type="submit">RECHERCHER</button>
+                    <button class="button-filtre zoom" name="btn-search" type="submit">RECHERCHER</button><br>
+                    <button class="button-filtre zoom" type="submit" name="btn-imprime-all">IMPRIMER</button>
                 </form>
             </div>
             <div class="container-right-search"><?php
@@ -38,7 +39,7 @@ if (isset($_POST['btn-search'])) {
                     </tr><?php
                         foreach ($rec as $rec) {?>
                         <tr class="tr-table-stock">
-                            <form action="../traitement/edit.php" method="post" enctype="multipart/form-data">
+                            <form action="../traitement/params.php" method="post" enctype="multipart/form-data">
                                 <input name="id" type='hidden' value="<?php echo $rec['Id'];?>"/>
                                 <td class="td-search-ref"><input name="newreference" class="input-edit" type="text" value="<?php echo $rec['reference'];?>"></input></td>
                                 <td class="td-search"><input name="newcouleur" class="input-edit" type="text" value="<?php echo $rec['couleur'];?>"></input></td>
@@ -56,7 +57,8 @@ if (isset($_POST['btn-search'])) {
                                 </td>
                                 <td class="td-file">
                                     <input name="newimage" class="input-files" type="file"></input>
-                                    <button class="button-edit zoom" type="submit" name="btn-edit">MODIFIER</button>
+                                    <button class="button-stock zoom" type="submit" name="btn-edit">MODIFIER</button>
+                                    <button class="button-stock zoom" type="submit" name="btn-delete">SUPPRIMER</button>
                                 </td>
                             </form>
                         </tr>
@@ -69,10 +71,11 @@ if (isset($_POST['btn-search'])) {
     } else {?>
         <section class="container-search">
             <div class="container-left-stock">
-                <a href="stock.php"><button class="button zoom petit">RETOUR</button></a>
+                <a href="stock.php"><button class="button-filtre zoom return">RETOUR</button></a>
                 <form class="form-stock" action="stock.php" method="POST">                
                     <input class="input input-search" type="search" autocomplete="off" name="word" id="search" placeholder="<?php echo @$_POST['word']?>"></input>
-                    <button class="button zoom btn-stock" name="btn-search" type="submit">RECHERCHER</button>
+                    <button class="button-filtre zoom" name="btn-search" type="submit">RECHERCHER</button><br>
+                    <button class="button-filtre zoom" type="submit" name="btn-imprime-all">IMPRIMER</button>
                 </form>
             </div>
             <div class="container-right-search"><?php
@@ -97,7 +100,7 @@ if (isset($_POST['btn-search'])) {
                     </tr><?php
                         foreach ($rec as $rec) {?>
                         <tr class="tr-table-stock">
-                            <form action="../traitement/edit.php" method="post" enctype="multipart/form-data">
+                            <form action="../traitement/params.php" method="post" enctype="multipart/form-data">
                                 <input name="id" type='hidden' value="<?php echo $rec['Id'];?>"/>
                                 <td class="td-search-ref"><input name="newreference" class="input-edit" type="text" value="<?php echo $rec['reference'];?>"></input></td>
                                 <td class="td-search"><input name="newcouleur" class="input-edit" type="text" value="<?php echo $rec['couleur'];?>"></input></td>
@@ -115,8 +118,9 @@ if (isset($_POST['btn-search'])) {
                                 </td>
                                 <td class="td-file">
                                     <input name="newimage" class="input-files" type="file"></input>
-                                    <button class="button-edit zoom" type="submit" name="btn-edit">MODIFIER</button>
-                                    <button class="btn-delete zoom" type="submit" name="btn-delete"><svg class="img-cross" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M175 175C184.4 165.7 199.6 165.7 208.1 175L255.1 222.1L303 175C312.4 165.7 327.6 165.7 336.1 175C346.3 184.4 346.3 199.6 336.1 208.1L289.9 255.1L336.1 303C346.3 312.4 346.3 327.6 336.1 336.1C327.6 346.3 312.4 346.3 303 336.1L255.1 289.9L208.1 336.1C199.6 346.3 184.4 346.3 175 336.1C165.7 327.6 165.7 312.4 175 303L222.1 255.1L175 208.1C165.7 199.6 165.7 184.4 175 175V175zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z"/></svg></button>
+                                    <button class="button-stock zoom" type="submit" name="btn-edit">MODIFIER</button>
+                                    <button class="button-stock zoom" type="submit" name="btn-delete">SUPPRIMER</button>
+                                    <button class="button-stock zoom" type="submit" name="btn-imprime">IMPRIMER</button>
                                 </td>
                             </form>
                         </tr>
@@ -137,7 +141,8 @@ if (isset($_POST['btn-search'])) {
                     <option value="ANAMAÏA">ANAMAÏA</option>
                 </select><br>
                 <input class="input input-search" type="search" name="word" id="tags"></input>
-                <button class="button zoom btn-stock" name="btn-search" type="submit">RECHERCHER</button>
+                <button class="button-filtre zoom" name="btn-search" type="submit">RECHERCHER</button><br>
+                <button class="button-filtre zoom" type="submit" name="btn-imprime-all">IMPRIMER</button>
             </form>
         </div>
         <div class="container-right-stock"><?php

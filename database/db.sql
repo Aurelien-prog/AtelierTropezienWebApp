@@ -13,7 +13,7 @@ CREATE TABLE produit (
     addrsImage VARCHAR(255) DEFAULT "TAMPON-AT.png",
     addrsScancode VARCHAR(255)
 )
-
+CREATE TABLE List (scan_code int(13))
 INSERT INTO produit VALUES (
     0,
     'zero',
