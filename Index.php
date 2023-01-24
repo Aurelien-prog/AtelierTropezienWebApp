@@ -7,10 +7,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
     <link rel="icon" type="image/png" href="./Image/TAMPON-AT.ico"/>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <title>SARL-SUZETTE</title>
+    <title>SUZETTE</title>
 </head>
 <body class="gradient">
-<div class="title">SARL SUZETTE</div>
+<div class="title">SUZETTE</div>
 <section>
     <div style="text-align:center;">
         <img src="./Image/TAMPON_blue.png">
