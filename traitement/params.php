@@ -186,52 +186,99 @@ if (isset($_POST['btn-imprime'])) {
 $pdf->Output('fiche.pdf','I');
 }
 if (isset($_POST['btn-imprime-all'])) {
-  $servername = "localhost";
-  $username = "akost";
-  $password = "1234567";
-  $dbname = "bdd_ean";
-  //mysql and db connection
-  $con = new mysqli($servername, $username, $password, $dbname);
-  if ($con->connect_error) {  //error check
-      die("Connection failed: " . $con->connect_error);
-  } else { 
-    $DB_TBLName = "produit"; 
-    $filename = "stock";  //your_file_name
-    $file_ending = "xls";   //file_extention
+  // Appel de la librairie FPDF
+  require("../fpdf/fpdf.php");
 
-    header("Content-Type: application/xls");    
-    header("Content-Disposition: attachment; filename=$filename.xls");  
-    header("Pragma: no-cache"); 
-    header("Expires: 0");
-
-    $sep = "\t";
-
-    $sql="SELECT * FROM $DB_TBLName"; 
-    $resultt = $con->query($sql);
-    while ($property = mysqli_fetch_field($resultt)) { //fetch table field name
-        echo $property->name."\t";
+  if ($data['marque'] == "ATELIER TROPEZIEN") {
+    // Création de la class PDF
+    class PDF extends FPDF {
+      // Header
+      function Header() {
+        // Logo : 1 >position à gauche du document (en mm), 2 >position en haut du document, 80 >largeur de l'image en mm). La hauteur est calculée automatiquement.
+        $this->Image('../PHOTO/TAMPON-AT.png',30,0,150);//Seulement des images en png !
+        // Saut de ligne 20 mm
+        $this->Ln(5);
+        // Titre gras (B) police Helbetica de 11
+        $this->SetFont('Helvetica','B',25);
+        // position du coin supérieur gauche par rapport à la marge gauche (mm)
+        $this->SetX(70);
+        // Texte : 60 >largeur ligne, 8 >hauteur ligne. Premier 0 >pas de bordure, 1 >retour à la ligneensuite, C >centrer texte, 1> couleur de fond ok  
+        $this->Cell(70,25,'ATELIER TROPEZIEN',0,1,'C');
+        // Saut de ligne 10 mm
+        $this->Ln(15);
+      }
     }
-
-    print("\n");    
-
-    while($row = mysqli_fetch_row($resultt))  //fetch_table_data
-    {
-        $schema_insert = "";
-        for($j=0; $j< mysqli_num_fields($resultt);$j++)
-        {
-            if(!isset($row[$j]))
-                $schema_insert .= "NULL".$sep;
-            elseif ($row[$j] != "")
-                $schema_insert .= "$row[$j]".$sep;
-            else
-                $schema_insert .= "".$sep;
-        }
-        $schema_insert = str_replace($sep."$", "", $schema_insert);
-        $schema_insert = preg_replace("/\r\n|\n\r|\n|\r/", " ", $schema_insert);
-        $schema_insert .= "\t";
-        print(trim($schema_insert));
-        print "\n";
+  } else {
+    // Création de la class PDF
+    class PDF extends FPDF {
+      // Header
+      function Header() {
+        // Logo : 1 >position à gauche du document (en mm), 2 >position en haut du document, 80 >largeur de l'image en mm). La hauteur est calculée automatiquement.
+        $this->Image('../PHOTO/TAMPON-ANA.png',35,20,150);//Seulement des images en png !
+        // Saut de ligne 5 mm
+        $this->Ln(5);
+        // Titre gras (B) police Helbetica de 11
+        $this->SetFont('Helvetica','B',30);
+        // position du coin supérieur gauche par rapport à la marge gauche (mm)
+        $this->SetX(80);
+        // Texte : 50 >largeur ligne, 8 >hauteur ligne. Premier 0 >pas de bordure, 1 >retour à la ligneensuite, C >centrer texte, 1> couleur de fond ok
+        $this->SetFillColor(255,255,255);
+        $this->Cell(50,10,"ANAMAIA",0,1,'C',1);
+        // Saut de ligne 6 mm
+        $this->Ln(20);
+      }
     }
   }
+  if ($data['marque'] == "ATELIER TROPEZIEN") {
+    try {
+      $pdo =  new PDO('mysql:host='.$PARAM_hote.';dbname='.$PARAM_nom_bd, $PARAM_utilisateur, $PARAM_mot_passe);
+      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+      $req = $pdo->prepare("SELECT * FROM produit WHERE marque = 'ATELIER TROPEZIEN'");
+      $req->execute();
+
+      while ($donnees = $req->fetch(PDO::FETCH_OBJ)) {
+        $pdf = new PDF('P','mm','A4');
+        $pdf->AddPage();
+        $pdf->SetFont('Helvetica','B',25);
+        $pdf->SetTextColor(0);
+          
+        $pdf->Cell(120,10,"Reference :   ".$data['reference']."",0,1,'L');
+        $pdf->Cell(120,10,"Couleur :       ".$data['couleur']."",0,1,'L');
+        $pdf->Image('../PHOTO/'.$data['addrsImage'].'',130,50,70);
+        $pdf->Ln(15);
+        $pdf->Cell(25,10,"Pack de :       ".$data['colisage']."",0,1,'L');
+        $pdf->Ln(5);
+        $pdf->Image('../PHOTO/'.$data['addrsScancode'].'',50,105,95);
+      }
+    }
+    catch(Exception $e) {echo "Scannez un code EAN !!";}
+  } else {
+    try {
+      $pdo =  new PDO('mysql:host='.$PARAM_hote.';dbname='.$PARAM_nom_bd, $PARAM_utilisateur, $PARAM_mot_passe);
+      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+      $req = $pdo->prepare("SELECT * FROM produit WHERE marque = 'ANAMAIA'");
+      $req->execute();
+
+      while ($donnees = $req->fetch(PDO::FETCH_OBJ)) {
+        $pdf = new PDF('P','mm','A4');
+        $pdf->AddPage();
+        $pdf->SetFont('Helvetica','B',25);
+        $pdf->SetTextColor(0);
+          
+        $pdf->Cell(120,10,"Reference :   ".$data['reference']."",0,1,'L');
+        $pdf->Cell(120,10,"Couleur :       ".$data['couleur']."",0,1,'L');
+        $pdf->Image('../PHOTO/'.$data['addrsImage'].'',130,50,70);
+        $pdf->Ln(15);
+        $pdf->Cell(25,10,"Pack de :       ".$data['colisage']."",0,1,'L');
+        $pdf->Ln(5);
+        $pdf->Image('../PHOTO/'.$data['addrsScancode'].'',50,105,95);
+      }
+    }
+    catch(Exception $e) {echo "Scannez un code EAN !!";}
+  }  
+// affichage à l'écran...
+$pdf->Output('fiche.pdf','I');
 }
 header('Location:../pages/stock.php');?>
