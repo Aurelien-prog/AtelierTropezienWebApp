@@ -2,11 +2,11 @@
 <section class="container-home">
     <form class="container-left-home" action="generateur.php" method="post">
         <div class="data-home top">
-            <label class="lbl" for="">CODE EAN<span style="color:red;">*</span></label>
+            <label class="lbl-cp" for="">Code EAN<span style="color:red;">*</span></label>
             <input class="input" name="code" type="text" required/>
         </div>
         <div class="data-home">
-            <label class="lbl" for="">NOMBRE<span style="color:red;">*</span></label>
+            <label class="lbl-cp" for="">Nombre<span style="color:red;">*</span></label>
             <input class="input" name="compteur" type="text" value="1" maxlength="2">
         </div>
         <div class="data-home">

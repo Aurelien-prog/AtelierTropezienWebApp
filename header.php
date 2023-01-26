@@ -17,11 +17,17 @@
 <!----------------------------------->
 <body>
 <header class="gradient">
-    <a href="generateur.php"><button class="button-menu zoom">GÉNÉRATEUR</button></a>
-    <a href="codeproduit.php"><button class="button-menu zoom">CODE PRODUIT</button></a>
-    <a href="stock.php"><button class="button-menu zoom">STOCK</button></a>
-    <a href="scan.php"><button class="button-menu zoom">SCANNER</button></a>
+    <a href="./generateur.php"><button class="button-menu zoom">GÉNÉRATEUR</button></a>
+    <a href="./codeproduit.php"><button class="button-menu zoom">AJOUTER PRODUIT</button></a>
+    <a href="./stock.php"><button class="button-menu zoom">STOCK</button></a>
+    <a href="./scan.php"><button class="button-menu zoom">SCANNER</button></a>
     <a href="../Index.php"><button class="button_ zoom">MENU</button></a>
+    <?php
+    /*$day = date('d');
+    $month = date('m');
+    $year = date('Y');
+    echo "<p class='clock'".$day." / ".$month." / ".$year."</p>";*/
+    ?>
 </header>
 <style>
 header {display: flex;gap: 2%;padding: 2% 0 2% 10%;}

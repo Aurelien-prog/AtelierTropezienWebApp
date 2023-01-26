@@ -1,146 +1,32 @@
 <?php include('../header.php');
-/////////////////////////
-$PARAM_hote='localhost';        
-$PARAM_nom_bd='BDD_EAN';
-$PARAM_utilisateur='akost';
-$PARAM_mot_passe='1234567';
-/////////////////////////?>
-<form class="top-scan" action="scan.php" method="POST">
-    <input class="input" type="text" name="code" placeholder="<?php echo @$_POST['codeEAN']?>" autofocus></input>
-    <button type="submit" class="button zoom" name="btn-add">AJOUTER</button>
-</form>
-<div class="container-scan"><?php
-@$btn = $_POST['btn-add'];
-if (isset($btn)) {
-    @$code = $_POST['code'];
-    $code = substr($code, 0, -1);
-    try {
-        $pdo =  new PDO('mysql:host='.$PARAM_hote.';dbname='.$PARAM_nom_bd, $PARAM_utilisateur, $PARAM_mot_passe);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        $req = $pdo->prepare('INSERT INTO list (scancode) VALUES ('.$code.')');
-        $req->execute();
-
-        $req2 = $pdo->prepare('SELECT * FROM list');
-        $req2->execute();
-
-        while ($donnees = $req2->fetch(PDO::FETCH_OBJ)) {
-            $code = $donnees->scancode;
-            //echo $code.'<br>';
-            $req3 = $pdo->prepare('SELECT * FROM produit WHERE CodeEAN = '.$code.'');
-            $req3->execute();
-
-            while ($donnees = $req3->fetch(PDO::FETCH_OBJ)) {
-                $num = $donnees->CodeEAN;
-                $ref = $donnees->reference;
-                $couleur = $donnees->couleur;
-                $coli = $donnees->colisage;
-                $numprod = $donnees->numProd;
-                $qte = $donnees->quantite;
-            }
-            echo ''.$ref.' - '.$couleur.' - '.$code.'<br>';
-        }
+      include('../database/logBDD.php');
+      include('../database/request.php');?>      
+<section class="container-scan">
+    <form class="container-scancode" action="scan.php" method="POST">
+        <!-- Input d'entrée avec bouton d'envoie -->
+        <div style="display:flex;flex-direction:row;align-items:center;gap:5%;">
+            <input class="input-search input-scan" type="text" name="code" autofocus></input>
+            <button type="submit" class="button zoom" name="button">
+                <svg style="width: 18px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>
+            </button>
+        </div>
+    <?php ShowButton(); ?>
+    </form>
+    <div class="container-list"><?php
+    if (isset($code) == NULL) { //AFFICHE LA LISTE AU RETOUR SUR LA PAGE
+        ShowList();
     }
-    catch(Exception $e) {echo "Scannez un code EAN !!";}?>
-    <form action="scan.php" method="post">
-        <button type="submit" class="button zoom" name="btn-stock">STOCK</button>
-        <button type="submit" class="button zoom" name="btn-destock">DÉSTOCK</button>
-        <button type="submit" class="button zoom" name="btn-all-delete">TOUT SUPPRIMER</button>
-    </form><?php
-} else {
-    try {
-        $pdo =  new PDO('mysql:host='.$PARAM_hote.';dbname='.$PARAM_nom_bd, $PARAM_utilisateur, $PARAM_mot_passe);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-        $req = $pdo->prepare('SELECT * FROM list');
-        $req->execute();
-    
-        while ($donnees = $req->fetch(PDO::FETCH_OBJ)) {
-            $code = $donnees->scancode;
-            echo $code.'<br>';
-        }?>
-        <form action="scan.php" method="post">
-            <button type="submit" class="button zoom" name="btn-stock">STOCK</button>
-            <button type="submit" class="button zoom" name="btn-destock">DÉSTOCK</button>
-            <button type="submit" class="button zoom" name="btn-all-delete">TOUT SUPPRIMER</button>
-        </form><?php
+    if (isset($btn)) { //AJOUTER LES COLIS A LA LISTE D'ENREGISTREMENT
+        AddList();
     }
-    catch(Exception $e) {echo "Scannez un code EAN !!";}
-}
-if (isset($_POST['btn-stock'])) {
-    try {
-        $pdo =  new PDO('mysql:host='.$PARAM_hote.';dbname='.$PARAM_nom_bd, $PARAM_utilisateur, $PARAM_mot_passe);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        $req = $pdo->prepare('SELECT * FROM list');
-        $req->execute();
-
-        while ($donnees = $req->fetch(PDO::FETCH_OBJ)) {
-            $id = $donnees->id;
-            $codex = $donnees->scancode;
-            //echo 'Id : '.$id.'<br>';
-            //echo 'Code : '.$codex.'<br>';
-            $req2 = $pdo->prepare('SELECT * FROM produit WHERE CodeEAN = '.$codex.'');
-            $req2->execute();
-
-            while ($donnees = $req2->fetch(PDO::FETCH_OBJ)) {
-                $ref = $donnees->reference;
-                $couleur = $donnees->couleur;
-                $qte = $donnees->quantite;
-                $coli = $donnees->colisage;
-            }
-            $newqte = $qte + $coli;
-            $req3 = $pdo->prepare('UPDATE produit SET quantite = '.$newqte.' WHERE CodeEAN = '.$codex.'');
-            $req3->execute();
-
-            $req4 = $pdo->prepare('DELETE FROM list WHERE id = '.$id.'');
-            $req4->execute();
-            echo ''.$coli.' PAIRES AJOUTÉS POUR : '.$ref.' '.$couleur.'<br>';
-        }
+    if (isset($btnstock)) { //AJOUTER LES COLIS AU STOCK
+        AddStock();    
     }
-    catch(Exception $e) {echo "Scannez un code EAN !!";}    
-}
-if (isset($_POST['btn-destock'])) {
-    try {
-        $pdo =  new PDO('mysql:host='.$PARAM_hote.';dbname='.$PARAM_nom_bd, $PARAM_utilisateur, $PARAM_mot_passe);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        $req = $pdo->prepare('SELECT * FROM list');
-        $req->execute();
-
-        while ($donnees = $req->fetch(PDO::FETCH_OBJ)) {
-            $id = $donnees->id;
-            $codex = $donnees->scancode;
-            //echo 'Id : '.$id.'<br>';
-            //echo 'Code : '.$codex.'<br>';
-            $req2 = $pdo->prepare('SELECT * FROM produit WHERE CodeEAN = '.$codex.'');
-            $req2->execute();
-
-            while ($donnees = $req2->fetch(PDO::FETCH_OBJ)) {
-                $ref = $donnees->reference;
-                $couleur = $donnees->couleur;
-                $qte = $donnees->quantite;
-                $coli = $donnees->colisage;
-            }
-            $newqte = $qte - $coli;
-            $req3 = $pdo->prepare('UPDATE produit SET quantite = '.$newqte.' WHERE CodeEAN = '.$codex.'');
-            $req3->execute();
-
-            $req4 = $pdo->prepare('DELETE FROM list WHERE id = '.$id.'');
-            $req4->execute();
-            echo ''.$coli.' PAIRES RETIRÉ POUR : '.$ref.' '.$couleur.'<br>';
-        }
+    if (isset($btndestock)) { //DEDUIRE LES COLIS DU STOCK
+        Destock();
     }
-    catch(Exception $e) {echo "Scannez un code EAN !!";}    
-}
-if (isset($_POST['btn-all-delete'])) {
-    try {
-        $pdo =  new PDO('mysql:host='.$PARAM_hote.';dbname='.$PARAM_nom_bd, $PARAM_utilisateur, $PARAM_mot_passe);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        $req = $pdo->prepare('TRUNCATE TABLE list');
-        $req->execute();
-    }
-    catch(Exception $e) {echo "Scannez un code EAN !!";}    
-}?>
-</div>
+    if (isset($btndelete)) { //EFFACER TOUTE LA LISTE D'ENREGISTREMENT
+        AllDelete();    
+    }?>
+    </div>
+</section>

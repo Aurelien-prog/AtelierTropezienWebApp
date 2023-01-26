@@ -17,7 +17,7 @@
     </div>
     <div class="menu">
         <a href="pages/generateur.php"><button class="button zoom">GÉNÉRATEUR</button></a>
-        <a href="pages/codeproduit.php"><button class="button zoom">CODE PRODUIT</button></a>
+        <a href="pages/codeproduit.php"><button class="button zoom">AJOUTER PRODUIT</button></a>
         <a href="pages/stock.php"><button class="button zoom">STOCK</button></a>
         <a href="pages/scan.php"><button class="button zoom">SCANNER</button></a>
     </div>    

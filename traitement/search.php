@@ -1,17 +1,10 @@
-<meta name="viewport" content="width=device-width, initial-scale=1" />
 <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" 
-    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>-->
-<!-------------------------------------------------------------------------------------------------------------->
-<input type="text" name="search_box" placeholder="Rechercher" id="search_box" class="input"
-	data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onkeyup="javascript:load_data(this.value)"
-	onfocus="javascript:load_search_history()" autocomplete="off"/>
-<span id="search_result"></span>
+integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>-->
 <script>
-function delete_search_history(id)
-{
-	fetch("process_data.php", {
+function delete_search_history(id) {
+	fetch("../autocomplete/process_data.php", {
 		method: "POST",
 		body: JSON.stringify({
 			action:'delete',
@@ -30,7 +23,7 @@ function load_search_history() {
 	var search_query = document.getElementsByName('search_box')[0].value;
 
 	if(search_query == '') {
-		fetch("process_data.php", {
+		fetch("../autocomplete/process_data.php", {
 			method: "POST",
 			body: JSON.stringify({
 				action:'fetch'
@@ -55,7 +48,7 @@ function load_search_history() {
 }
 function get_text(event) {
 	var string = event.textContent;
-	fetch("process_data.php", {
+	fetch("../autocomplete/process_data.php", {
 		method:"POST",
 		body: JSON.stringify({
 			search_query : string
@@ -75,7 +68,7 @@ function load_data(query) {
 		var form_data = new FormData();
 		form_data.append('query', query);
 		var ajax_request = new XMLHttpRequest();
-		ajax_request.open('POST', 'process_data.php');
+		ajax_request.open('POST', '../autocomplete/process_data.php');
 		ajax_request.send(form_data);
 		ajax_request.onreadystatechange = function() {
 			if(ajax_request.readyState == 4 && ajax_request.status == 200) {

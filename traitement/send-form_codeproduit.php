@@ -10,7 +10,7 @@ $cde = $cachet."".$cdeEAN;
 $qte = $_POST['quantite'];
 $coli = $_POST['colisage'];
 $marque = $_POST['marque'];
-$pht = $_FILES['fileToUpload']['name'];
+$pht = $_FILES['file']['name'];
 //$scan = $_FILES['fileToUpload2']['name'];?>
 
 <div class="container-all-data">
@@ -49,7 +49,7 @@ $pht = $_FILES['fileToUpload']['name'];
 //  UPLOAD IMAGE -> DOSSIER PHOTO  //
 /////////////////////////////////////
 $target_dir = "../PHOTO/";
-$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$target_file = $target_dir . basename($_FILES["file"]["name"]);
 //$target_file = $target_dir . basename($_FILES["fileToUpload2"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -75,7 +75,7 @@ if (file_exists("TAMPON-AT.png")) {
   $uploadOk = 0;
 }
 // Check file size
-if ($_FILES["fileToUpload"]["size"] > 50000000) {
+if ($_FILES["file"]["size"] > 50000000) {
   echo "Désolé, ce fichier est trop gros.<br>";
   $uploadOk = 0;
 }
@@ -95,8 +95,8 @@ if ($uploadOk == 0) {
   echo "Votre fichier n'a pas été télécharger !<br>";
 // if everything is ok, try to upload file
 } else {
-  if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-    echo "Le fichier ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " à bien été télécharger.<br><br>";
+  if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
+    echo "Le fichier ". htmlspecialchars( basename( $_FILES["file"]["name"])). " à bien été télécharger.<br><br>";
   }
   /*if (move_uploaded_file($_FILES["fileToUpload2"]["tmp_name"], $target_file)) {
     echo "Le fichier ". htmlspecialchars( basename( $_FILES["fileToUpload2"]["name"])). " à bien été télécharger.<br><br>";
