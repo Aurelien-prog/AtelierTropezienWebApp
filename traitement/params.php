@@ -5,7 +5,7 @@ $ref = $_POST['newreference'];
 $coul = $_POST['newcouleur'];
 $qte = $_POST['newquantite'];
 $coli = $_POST['newcolisage'];
-$pht = $_FILES['newimage']['name'];
+$pht = $_FILES['file']['name'];
 
 if (isset($_POST['btn-delete'])) {
   if (!$bdd) { //Contrôler la connexion
@@ -27,7 +27,7 @@ if (isset($_POST['btn-edit'])) {
     //  UPLOAD IMAGE -> DOSSIER PHOTO  //
     /////////////////////////////////////
     $target_dir = "../PHOTO/";
-    $target_file = $target_dir . basename($_FILES["newimage"]["name"]);
+    $target_file = $target_dir . basename($_FILES["file"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
   
@@ -52,7 +52,7 @@ if (isset($_POST['btn-edit'])) {
       $uploadOk = 0;
     }
     // Check file size
-    if ($_FILES["newimage"]["size"] > 50000000) {
+    if ($_FILES["file"]["size"] > 50000000) {
       echo "Désolé, ce fichier est trop gros.<br>";
       $uploadOk = 0;
     }
@@ -67,8 +67,8 @@ if (isset($_POST['btn-edit'])) {
       echo "Votre fichier n'a pas été télécharger !<br>";
     // if everything is ok, try to upload file
     } else {
-      if (move_uploaded_file($_FILES["newimage"]["tmp_name"], $target_file)) {
-        echo "Le fichier ". htmlspecialchars( basename( $_FILES["newimage"]["name"])). " à bien été télécharger.<br><br>";
+      if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
+        echo "Le fichier ". htmlspecialchars( basename( $_FILES["file"]["name"])). " à bien été télécharger.<br><br>";
       } else {
         echo "Désolé, il y a eu une erreur durant le téléchargement de votre fichier.<br>";
       }

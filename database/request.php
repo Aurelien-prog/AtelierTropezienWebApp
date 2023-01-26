@@ -120,7 +120,7 @@ function AddList() {
 
         ShowList();
 
-        $req1 = $pdo->prepare('SELECT scancode FROM list WHERE EXISTS (SELECT CodeEAN FROM produit WHERE '.$code.' = CodeEAN) AS scancode_exists');
+        /*$req1 = $pdo->prepare('SELECT scancode FROM list WHERE EXISTS (SELECT CodeEAN FROM produit WHERE '.$code.' = CodeEAN) AS scancode_exists');
         $req1->execute();
         $result = $req1->fetch();
 
@@ -128,7 +128,7 @@ function AddList() {
             echo 'true';
         } else {
             echo 'code introuvable !';
-        }
+        }*/
 
     } catch(Exception $e) {}
 }
